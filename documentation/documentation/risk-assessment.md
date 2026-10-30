@@ -1,7 +1,7 @@
 # Risk Assessment
 
 ## Document Information
-
+https://github.com/PaulQAEngineer/booking-platform-quality-engineering/tree/main/documentation
 | Item | Details |
 |--------|--------|
 | Project | Booking Platform Quality Engineering Showcase |
