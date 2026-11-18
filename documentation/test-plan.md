@@ -1,24 +1,42 @@
 # Test Plan
 
+---
+
 ## Document Information
 
 | Item | Details |
-|--------|--------|
+| --- | --- |
 | Project | Booking Platform Quality Engineering Showcase |
 | Author | Paul |
-| Version | 1.0 |
+| Version | 2.0 |
 | Date | October 2026 |
 | Test Level | API Testing |
 | Test Type | Functional, Negative, Security, Performance, Regression |
-| Test Approach | Risk-Based Testing |
+| Test Approach | Risk\-Based Testing |
 
 ---
 
 # Purpose
 
-This test plan defines the activities, resources, scope, schedule and approach required to validate the quality of the Booking Platform API.
+This Test Plan defines the testing activities, scope, resources, schedule and controls required to validate the quality, reliability and security of the Booking Platform API.
 
-The plan supports the objectives defined within the Test Strategy and ensures testing activities are executed consistently and effectively.
+The plan aligns with the Test Strategy and provides a structured approach to verifying that business\-critical booking functionality operates as expected while reducing operational and customer\-facing risk.
+
+---
+
+# Business Context
+
+The Booking Platform API enables customers and systems to create, manage, retrieve and cancel bookings.
+
+Failures within these workflows could result in:
+
+- Loss of revenue
+- Customer dissatisfaction
+- Operational disruption
+- Data integrity issues
+- Security vulnerabilities
+
+Testing activities will focus on validating areas with the greatest business impact and highest risk.
 
 ---
 
@@ -26,13 +44,33 @@ The plan supports the objectives defined within the Test Strategy and ensures te
 
 The objectives of testing are to:
 
-- Verify API functionality meets expected business requirements.
-- Validate booking workflows operate correctly.
-- Ensure appropriate authentication and authorisation controls exist.
-- Verify invalid input is handled safely.
+- Verify API functionality meets defined business requirements.
+- Validate complete booking lifecycle workflows.
+- Ensure authentication and authorisation controls function correctly.
+- Confirm invalid requests are handled safely and consistently.
+- Verify API contracts remain stable.
 - Identify defects before release.
-- Reduce business and operational risk.
+- Reduce operational and business risk.
 - Provide confidence in production readiness.
+
+---
+
+# Requirements Traceability
+
+The following requirements will be validated through testing.
+
+| Requirement ID | Description |
+| --- | --- |
+| REQ\-001 | Authenticate User |
+| REQ\-002 | Create Booking |
+| REQ\-003 | Retrieve Booking |
+| REQ\-004 | Update Booking |
+| REQ\-005 | Delete Booking |
+| REQ\-006 | Validate Request Data |
+| REQ\-007 | Handle Invalid Requests |
+| REQ\-008 | Protect Sensitive Data |
+
+Each requirement will be linked to one or more test scenarios to ensure complete coverage.
 
 ---
 
@@ -40,7 +78,7 @@ The objectives of testing are to:
 
 ## In Scope
 
-The following API functionality will be tested:
+The following functionality will be tested:
 
 - Authentication
 - Booking Creation
@@ -65,7 +103,22 @@ The following areas are excluded:
 - Mobile Application Testing
 - Accessibility Testing
 - Infrastructure Penetration Testing
-- Third-Party Integration Testing
+- Third\-Party Integration Testing
+
+---
+
+# Business Critical Areas
+
+The following areas present the highest business risk and will receive increased testing focus.
+
+| Area | Business Risk |
+| --- | --- |
+| Authentication | Unauthorised system access |
+| Booking Creation | Revenue loss and failed customer transactions |
+| Booking Retrieval | Customer support impact and booking visibility issues |
+| Booking Updates | Incorrect reservation information |
+| Booking Deletion | Data loss and operational disruption |
+| Validation Rules | Data integrity issues |
 
 ---
 
@@ -77,6 +130,7 @@ The following artefacts will be produced:
 - Test Plan
 - Risk Assessment
 - Test Scenarios
+- Requirements Traceability Matrix
 - Postman Collections
 - Environment Configuration Files
 - Newman Execution Reports
@@ -95,7 +149,7 @@ Staging / Test Environment
 ## Tools
 
 | Tool | Purpose |
-|--------|--------|
+| --- | --- |
 | Postman | API Test Execution |
 | Newman | Automated Collection Execution |
 | GitHub | Source Control |
@@ -106,7 +160,7 @@ Staging / Test Environment
 
 # Test Data Requirements
 
-Testing will utilise a range of data conditions.
+Testing will utilise a range of representative business scenarios and data conditions.
 
 ## Positive Test Data
 
@@ -132,20 +186,64 @@ Testing will utilise a range of data conditions.
 
 ## Security Test Data
 
-- SQL Injection Payloads
-- Script Injection Payloads
-- Invalid Tokens
-- Expired Tokens
+- SQL Injection payloads
+- Script Injection payloads
+- Invalid tokens
+- Expired tokens
 
 ---
 
 # Test Approach
 
-Testing will follow a risk-based approach.
+Testing will follow a risk\-based approach.
 
-Testing effort will focus on areas with the greatest business impact and highest likelihood of failure.
+The level of testing applied to each feature will be determined by:
 
-The following test types will be executed.
+- Business impact
+- Customer impact
+- Likelihood of failure
+- Technical complexity
+- Security exposure
+
+Business\-critical workflows will receive the greatest test coverage.
+
+---
+
+# Test Automation Strategy
+
+## Purpose
+
+Automation is intended to provide rapid feedback, improve regression coverage and support continuous integration practices.
+
+## Automation Scope
+
+The following areas will be automated:
+
+- Authentication
+- Booking Creation
+- Booking Retrieval
+- Booking Update
+- Booking Deletion
+- Schema Validation
+- Regression Tests
+
+## Automation Exclusions
+
+The following activities will remain manual:
+
+- Exploratory Testing
+- Ad\-hoc Investigations
+- Usability Evaluation
+- One\-off Risk Assessments
+
+## Execution
+
+Automated tests will execute:
+
+- Locally during development
+- Via Newman execution
+- Through GitHub Actions pipelines
+- Prior to deployment activities
 
 ---
 
@@ -153,7 +251,7 @@ The following test types will be executed.
 
 ## Objective
 
-Verify expected system behaviour.
+Verify expected business functionality operates correctly.
 
 ## Coverage
 
@@ -224,20 +322,20 @@ Verify security controls prevent unauthorised access and malicious behaviour.
 
 ## Objective
 
-Assess API responsiveness and stability.
+Assess API responsiveness, reliability and stability under expected usage conditions.
 
 ## Coverage
 
 - Response Times
-- Server Reliability
-- Error Rates
 - Throughput
+- Error Rates
+- Stability
 
 ### Success Criteria
 
 - Average response time below 500ms
 - No unexpected 5xx responses
-- Stable performance across key workflows
+- Stable performance throughout execution
 
 ---
 
@@ -249,37 +347,37 @@ Ensure existing functionality remains unaffected by changes.
 
 ## Coverage
 
-- Booking Workflows
 - Authentication
+- Booking Workflows
 - Validation Rules
 - Business Critical Flows
 
-Regression testing will be automated wherever possible.
+Regression testing will be automated wherever possible and executed before release approval.
 
 ---
 
 # Test Schedule
 
-| Phase | Activity |
-|--------|--------|
-| Phase 1 | Environment Verification |
-| Phase 2 | Functional Testing |
-| Phase 3 | Negative Testing |
-| Phase 4 | Security Testing |
-| Phase 5 | Performance Validation |
-| Phase 6 | Regression Testing |
-| Phase 7 | Defect Retesting |
-| Phase 8 | Test Completion Reporting |
+| Week | Activity |
+| --- | --- |
+| Week 1 | Environment Setup and Smoke Testing |
+| Week 2 | Functional Testing |
+| Week 3 | Negative Testing and Defect Logging |
+| Week 4 | Security Validation |
+| Week 5 | Performance Validation |
+| Week 6 | Regression Testing |
+| Week 7 | Defect Retesting |
+| Week 8 | Reporting and Closure |
 
 ---
 
 # Resource Requirements
 
 | Role | Responsibility |
-|--------|--------|
-| QA Engineer | Test Design and Execution |
-| Developer | Defect Resolution |
-| Project Stakeholders | Review and Approval |
+| --- | --- |
+| QA Engineer | Test Design, Automation and Execution |
+| Developer | Defect Investigation and Resolution |
+| Stakeholders | Review and Approval |
 
 ---
 
@@ -300,7 +398,7 @@ Testing may begin when:
 
 Testing will be considered complete when:
 
-- All Priority 1 scenarios have been executed.
+- 100% of Priority 1 scenarios have been executed.
 - No Critical defects remain open.
 - No High severity defects remain unresolved.
 - Regression testing has completed successfully.
@@ -312,7 +410,7 @@ Testing will be considered complete when:
 
 # Defect Management
 
-Defects will be recorded and prioritised using the following classification.
+Defects will be recorded, prioritised and tracked throughout testing.
 
 ## Critical
 
@@ -334,13 +432,14 @@ Minor issue with limited business impact.
 
 # Dependencies
 
-Testing is dependent on:
+Testing is dependent upon:
 
 - Environment availability
 - API deployment stability
 - Authentication services
 - Valid test accounts
 - Supporting documentation
+- Test data availability
 
 ---
 
@@ -355,28 +454,29 @@ The following testing risks have been identified:
 - API contract changes
 - Delayed defect resolution
 
-Detailed risk information can be found within the Risk Assessment document.
+For detailed risk analysis, refer to the Risk Assessment document.
 
 ---
 
 # Test Metrics
 
-The following metrics will be monitored:
+The following quality metrics will be monitored.
 
 | Metric | Target |
-|----------|----------|
+| --- | --- |
 | Priority 1 Execution | 100% |
 | Smoke Test Pass Rate | 100% |
 | Critical Defects Open | 0 |
 | High Severity Defects Open | 0 |
 | Average Response Time | <500ms |
 | Automation Pass Rate | >95% |
+| Requirement Coverage | 100% |
 
 ---
 
 # Reporting
 
-The following reports will be produced throughout testing:
+The following reports will be produced:
 
 - Daily Test Progress Updates
 - Defect Reports
@@ -387,12 +487,15 @@ The following reports will be produced throughout testing:
 
 # Approval
 
-This Test Plan defines the execution approach for validating the Booking Platform API.
+This Test Plan defines the execution approach used to validate the Booking Platform API and support release readiness decisions.
 
-The document is subject to review and update throughout the testing lifecycle as requirements, risks and priorities evolve.
+The document should be reviewed and updated throughout the project lifecycle as requirements, risks and priorities evolve.
 
 ---
 
-**Author:** Paul  
-**Project:** Booking Platform Quality Engineering Showcase  
-**Version:** 1.0
+**Author:** Paul
+
+**Project:** Booking Platform Quality Engineering Showcase
+
+**Version:** 2.0
+
